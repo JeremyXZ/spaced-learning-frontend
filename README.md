@@ -1,4 +1,4 @@
-# spaced-learning-backend
+# Spaced Learning App
 
 The app aims to help students revise what they have learned in spaced repetition, namely 1, 7, 16 and 35 days after their initial learning session. In this way, students can effectively retain information for longer periods and improve their learning efficiently. 
 
@@ -19,3 +19,9 @@ Basic steps to implement the schedule:
 7) Set up helper functions that query the database
 
 8) Set up router and sub-routers to responds to Axios api calls from the frontend
+
+
+
+![[Wireframe for App UI](https://github.com/JeremyXZ/spaced-learning-frontend/blob/main/src/images/learning-app%20wireframe.png)
+
+
