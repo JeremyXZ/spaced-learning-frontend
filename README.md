@@ -22,6 +22,6 @@ Basic steps to implement the schedule:
 
 
 
-![[Wireframe for App UI](https://github.com/JeremyXZ/spaced-learning-frontend/blob/main/src/images/learning-app%20wireframe.png)
+![Wireframe for App UI](https://github.com/JeremyXZ/spaced-learning-frontend/blob/main/src/images/learning-app%20wireframe.png)
 
 
