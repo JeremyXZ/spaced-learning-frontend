@@ -4,12 +4,22 @@ import styled from "styled-components";
 
 const Revision = () => {
     return (
-        <div>
+        <Wrapper>
             <h3>Revision Zone</h3>
             <p>Resources</p>
-        </div>
+        </Wrapper>
     )
 }
 
-
+const Wrapper = styled.div`
+    max-width:100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1em;
+    font-size: 1.2em;
+    
+`;
 export default Revision

@@ -33,9 +33,6 @@ const Wrapper = styled.div`
   }
 `;
 
-    
-
-
 const TitleWrapper = styled.h1`    
     letter-spacing: 0.07em;
 `
@@ -49,12 +46,12 @@ const HeaderBottomWrapper = styled.div`
 `
 
 const ClockWrapper = styled.div`
-    align-self: flex-start;
+    /* align-self: flex-start; */
     
 
 `
 
 const TimerWrapper = styled.div`
-    align-self: flex-end;
+    /* align-self: flex-end; */
 `
 export default Header
