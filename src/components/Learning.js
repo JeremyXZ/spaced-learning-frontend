@@ -3,19 +3,24 @@ import styled from "styled-components";
 import wordsCount from "words-count";
 
 
-const Learning = ({userInput, setUserInput}) => {
-
+const Learning = ({userInput, setUserInput, handleClick}) => {
+    const {subject, task, difficulty, topic} = userInput
     
-    const [numOfWord, setNumofWord] = useState('')
+    const [numOfWord, setNumOfWord] = useState('')
     const textareaRef = useRef(null);
   
     const handleChange = (event) => {
-      setUserInput(event.target.value);
+        const {name, value} = event.target
+
+        setUserInput(prevState => ({
+            ...prevState, [name]: value, word_count: numOfWord
+        }));
     };
   
     const getWordCount = (event) => {
-        setNumofWord(wordsCount(event.target.value))
+        setNumOfWord(wordsCount(event.target.value))
     }
+
     useEffect(() => {
       const textarea = textareaRef.current;
       textarea.style.height = 'auto';
@@ -26,42 +31,59 @@ const Learning = ({userInput, setUserInput}) => {
     return (
         <Wrapper>
             <TitleWrapper>Learning Zone</TitleWrapper>
-            <FormWrapper>
+            <FormWrapper onSubmit={handleClick}>
                     <div>
-                        <label>Subject</label>
-                        <input/>
+                        <label 
+                        htmlFor="subject">Subject</label>
+                        <input
+                        id="subject"
+                        type='text'
+                        name="subject"
+                        value={subject}
+                        onChange={handleChange}
+                        />
                     </div>
                     <div>
-                        <label>Topic</label>
-                        <input/>
+                        <label htmlFor="topic">Topic</label>
+                        <input
+                        id="topic"
+                        type='text'
+                        name="topic"
+                        value={topic}
+                        onChange={handleChange}
+                        />
                     </div>
                     <div>
-                        <label>Difficulty</label>
-                        <input/>
+                        <label htmlFor="difficulty">Difficulty</label>
+                        <input
+                        id="difficulty"
+                        type='text'
+                        name="difficulty"
+                        value={difficulty}
+                        onChange={handleChange}
+                        />
                     </div>
                     <div>
                         <div>WordCount: </div>
                         <div>{numOfWord}</div>
                     </div>
                    
-                    <div class="area">
-                        <label>Content</label>
-                        {/* <textarea 
-                        value={height}
-                        onInput={handleInput}
-                        rows="5" cols="30"
-                        ></textarea>   */}
+                    <div className="area">
+                        <label htmlFor="task">Content</label>
                         <StyledTextarea
+                        id="task"
+                        type='text'
+                        name="task"
+                        value={task}
                         ref={textareaRef}
-                        value={userInput}
                         onChange={handleChange}
                         placeholder="Enter your text here..."
                         onInput={getWordCount}
                         />
                     </div>    
-                
+                    <button type="submit">Save Task</button>
             </FormWrapper>
-            <p>Resources</p>
+            
         </Wrapper>
     )
 }
@@ -84,7 +106,7 @@ const TitleWrapper = styled.h3`
     align-self: flex-start;
 `
 
-const FormWrapper = styled.div`
+const FormWrapper = styled.form`
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: auto auto 1f;

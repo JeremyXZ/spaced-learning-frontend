@@ -3,42 +3,42 @@ import styled, { createGlobalStyle } from 'styled-components'
 import Header from './Header'
 import Learning from './Learning'
 import Revision from './Revision'
-import {Configuration, OpenAIApi} from 'openai'
 import axios from "axios"
+import { createQuestions } from '../createQuiz'
 
-const baseURL = "https://jsonplaceholder.typicode.com/posts/1";
-
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
-
-
-const createQuestions = async (userInput) => {
-    const prompt = `Generate questions from this text:\n${userInput}`
-    const response = await openai.completions.create({
-    engine: 'davinci',
-    prompt,
-    maxTokens: 60,
-    n: 3,
-    stop: ['\n'],
-  })
-  return response.choices.map((choice) => choice.text.trim())
-        
-}
-
-const saveData = (questions, userInput) => {
-
-
-}
-const handleClicik = async() => {
-    const questions = await createQuestions(userInput)
-    setQuestions(questions)
-    saveData(questions)
-}
+const baseURL = 'http://localhost:4000/api/tasks/'
 
 const App = () => {
-    const [userInput, setUserInput] = useState('')
-    const [questons, setQuestions] = userState([])
+        const [userInput, setUserInput] = useState({
+        subject: "",
+        topic: "",
+        task: "",
+        difficulty: "",
+        word_count: ""
+
+    })
+    const [questions, setQuestions] = useState([])
+    // console.log("user input", userInput)
+    // console.log("questions", questions)
+    
+    const saveData = async (questions, userInput) => {
+        try {
+            const response = await axios
+            .post(baseURL, {userInput, questions})
+            console.log("response", response)
+        } catch(err) {
+            console.error(err)
+    }
+   
+}
+
+    const handleClick = async(e) => {
+        e.preventDefault();
+       const newQuestion = await createQuestions(userInput.task, setQuestions)
+        saveData(, userInput)
+        
+    }
+    
 
     return(
         <>
@@ -46,8 +46,9 @@ const App = () => {
         <Wrapper>
             <Header/>
             <MainWrapper>
-                <Learning userInput={userInput} setUserInput={setUserInput}/>
-                <Revision/>
+                <Learning userInput={userInput} setUserInput={setUserInput} handleClick={handleClick}/>
+                <Revision {...userInput} questions={questions}/>
+                
             </MainWrapper>
            
         </Wrapper>
@@ -55,21 +56,6 @@ const App = () => {
     )
 }
 
-// const Wrapper = styled.div`
-  
-//     display: grid;
-//     /* grid-template-columns: minmax(23em 80em);
-//     grid-template-rows: 9.375em auto; */
-//     width: 850px;
-
-//     margin: 0.625em;
-//     gap: 0.625em;
-//     /* min-width: 22em;
-//     max-width: 75em; */
-//     height: 100vh;
-//     background-color: green;
-    
-//  `
 
 const GlobalStyle = createGlobalStyle`
     html,
