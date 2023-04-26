@@ -2,25 +2,17 @@ import React from "react";
 import styled from "styled-components";
 
 
-const Revision = (userInput, {questions}) => {
-    const { subject, task, difficulty,  word_count, topic} = userInput
+
+const Revision = ({userInput, setQuestions, questions}) => {
+    const { subject, difficulty,  word_count, topic} = userInput
+
     return (
         <Wrapper>
             <h3>Revision Zone</h3>
-            <h4>{subject}</h4>
-            { questions?.length > 0  && questions.map((question, index) => (
-            <div key={index}>
-                <h3>Question {index + 1}</h3>
-                <p>{question.question}</p>
-                <p>Answer: {question.answer}</p>
-            </div>
-      ))
-            }
-            <p>Topic: {topic}</p>
-             <p>Difficulty: {difficulty}</p>
-            <p>Content: {task}</p>
-            <p>Word count: {word_count}</p>
-           
+            <h4>Subject: {subject}</h4>
+            <h4>Topic: {topic}</h4>
+            <h4>Difficulty: {difficulty}</h4>
+            <h4>Word count: {word_count}</h4>                         
             
         </Wrapper>
     )

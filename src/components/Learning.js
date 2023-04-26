@@ -1,25 +1,25 @@
-import React, {useState, useEffect, useRef} from "react";
-import styled from "styled-components";
-import wordsCount from "words-count";
-
+import React, {useState, useEffect, useRef} from "react"
+import styled from "styled-components"
+import wordsCount from "words-count"
+import CreateQuiz from "./CreateQuiz"
 
 const Learning = ({userInput, setUserInput, handleClick}) => {
-    const {subject, task, difficulty, topic} = userInput
+    const {subject, task, difficulty, topic, word_count} = userInput
     
-    const [numOfWord, setNumOfWord] = useState('')
-    const textareaRef = useRef(null);
+    // const [numOfWord, setNumOfWord] = useState('')
+    const textareaRef = useRef(null)
   
     const handleChange = (event) => {
         const {name, value} = event.target
 
         setUserInput(prevState => ({
-            ...prevState, [name]: value, word_count: numOfWord
+            ...prevState, [name]: value, word_count: wordsCount(value)
         }));
     };
   
-    const getWordCount = (event) => {
-        setNumOfWord(wordsCount(event.target.value))
-    }
+    // const getWordCount = (event) => {
+    //     setNumOfWord(wordsCount(event.target.value))
+    // }
 
     useEffect(() => {
       const textarea = textareaRef.current;
@@ -31,7 +31,7 @@ const Learning = ({userInput, setUserInput, handleClick}) => {
     return (
         <Wrapper>
             <TitleWrapper>Learning Zone</TitleWrapper>
-            <FormWrapper onSubmit={handleClick}>
+            <FormWrapper onSubmit={(e) => handleClick(e)}>
                     <div>
                         <label 
                         htmlFor="subject">Subject</label>
@@ -59,13 +59,13 @@ const Learning = ({userInput, setUserInput, handleClick}) => {
                         id="difficulty"
                         type='text'
                         name="difficulty"
-                        value={difficulty}
+                        value={difficulty === 0? "" : difficulty }
                         onChange={handleChange}
                         />
                     </div>
                     <div>
                         <div>WordCount: </div>
-                        <div>{numOfWord}</div>
+                        <div>{word_count}</div>
                     </div>
                    
                     <div className="area">
@@ -78,10 +78,10 @@ const Learning = ({userInput, setUserInput, handleClick}) => {
                         ref={textareaRef}
                         onChange={handleChange}
                         placeholder="Enter your text here..."
-                        onInput={getWordCount}
+                        
                         />
                     </div>    
-                    <button type="submit">Save Task</button>
+                    <button type="submit">Save Content</button>
             </FormWrapper>
             
         </Wrapper>

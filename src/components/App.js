@@ -3,8 +3,9 @@ import styled, { createGlobalStyle } from 'styled-components'
 import Header from './Header'
 import Learning from './Learning'
 import Revision from './Revision'
+import CreateQuiz from './CreateQuiz'
 import axios from "axios"
-import { createQuestions } from '../createQuiz'
+
 
 const baseURL = 'http://localhost:4000/api/tasks/'
 
@@ -13,18 +14,16 @@ const App = () => {
         subject: "",
         topic: "",
         task: "",
-        difficulty: "",
+        difficulty: 0,
         word_count: ""
 
     })
     const [questions, setQuestions] = useState([])
-    // console.log("user input", userInput)
-    // console.log("questions", questions)
+    
     
     const saveData = async (questions, userInput) => {
         try {
-            const response = await axios
-            .post(baseURL, {userInput, questions})
+            const response = await axios.post(baseURL, {userInput, questions})
             console.log("response", response)
         } catch(err) {
             console.error(err)
@@ -33,10 +32,9 @@ const App = () => {
 }
 
     const handleClick = async(e) => {
-        e.preventDefault();
-       const newQuestion = await createQuestions(userInput.task, setQuestions)
-        saveData(, userInput)
-        
+        e.preventDefault();             
+        saveData(questions, userInput)  
+            
     }
     
 
@@ -47,8 +45,9 @@ const App = () => {
             <Header/>
             <MainWrapper>
                 <Learning userInput={userInput} setUserInput={setUserInput} handleClick={handleClick}/>
-                <Revision {...userInput} questions={questions}/>
-                
+                <CreateQuiz userInput={userInput} setQuestions={setQuestions} questions={questions}/>  
+                {/* <Revision userInput={userInput} setQuestions={setQuestions} questions={questions}/> */}
+                               
             </MainWrapper>
            
         </Wrapper>
