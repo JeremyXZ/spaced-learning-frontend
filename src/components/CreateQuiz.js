@@ -1,14 +1,13 @@
-
-import React, {useState} from 'react';
+import styled from "styled-components"
+import React from 'react';
 import axios from 'axios';
 
 const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
-const CreateQuiz =  ({userInput, setQuestions, questions}) => {    
+const CreateQuiz =  ({userInput, setQuestions, questions, handleShow, isShown}) => {    
 
-    // const [quizQuestions, setQuizQuestions] = useState([])
     const {task} = userInput
-
+  
     const createQuestions = async (task) => {
       console.log('task:', task);    
         const response = await axios.post('https://api.openai.com/v1/completions', {
@@ -36,9 +35,6 @@ const CreateQuiz =  ({userInput, setQuestions, questions}) => {
           return { question, answer };
         });
 
-
-
-
         console.log('newQuestions', newQuestions)
        
         setQuestions(newQuestions)
@@ -47,8 +43,11 @@ const CreateQuiz =  ({userInput, setQuestions, questions}) => {
     }
         
       return (
-        <div>          
-          <button onClick={() => createQuestions(task)}>Generate Questions</button>
+        <Wrapper> 
+          <ButtonWrapper>
+            <Button onClick={() => createQuestions(task)}>Create Questions</Button> 
+            <Button onClick={handleShow}>Show Revision</Button>           
+          </ButtonWrapper>
           {questions.length > 0 && questions.map((question, index) => (
             <div key={index}>
               <h3>Questions generated</h3>
@@ -56,9 +55,54 @@ const CreateQuiz =  ({userInput, setQuestions, questions}) => {
               <p>{question.answer}</p>
             </div>
           ))}
-        </div>
+        </Wrapper>
       )       
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  align-items: center;
+`
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+
+`
+
+const Button = styled.button`
+  
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 50%;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0 2px;
+  line-height: 20px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  flex: 1;
+  margin: 0 30px;
+
+&:hover {
+  background-color: #fff;
+}
+
+&:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+`
     
 export default CreateQuiz
 

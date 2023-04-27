@@ -1,12 +1,12 @@
-import React, {useState, useEffect, useRef} from "react"
+import React, {useEffect, useRef} from "react"
 import styled from "styled-components"
 import wordsCount from "words-count"
-import CreateQuiz from "./CreateQuiz"
+
 
 const Learning = ({userInput, setUserInput, handleClick}) => {
     const {subject, task, difficulty, topic, word_count} = userInput
     
-    // const [numOfWord, setNumOfWord] = useState('')
+    
     const textareaRef = useRef(null)
   
     const handleChange = (event) => {
@@ -17,10 +17,6 @@ const Learning = ({userInput, setUserInput, handleClick}) => {
         }));
     };
   
-    // const getWordCount = (event) => {
-    //     setNumOfWord(wordsCount(event.target.value))
-    // }
-
     useEffect(() => {
       const textarea = textareaRef.current;
       textarea.style.height = 'auto';
@@ -67,7 +63,7 @@ const Learning = ({userInput, setUserInput, handleClick}) => {
                         <div>WordCount: </div>
                         <div>{word_count}</div>
                     </div>
-                   
+                    
                     <div className="area">
                         <label htmlFor="task">Content</label>
                         <StyledTextarea
@@ -80,8 +76,8 @@ const Learning = ({userInput, setUserInput, handleClick}) => {
                         placeholder="Enter your text here..."
                         
                         />
-                    </div>    
-                    <button type="submit">Save Content</button>
+                    </div>                    
+                    <Button type="submit">Save Data</Button>                    
             </FormWrapper>
             
         </Wrapper>
@@ -113,11 +109,10 @@ const FormWrapper = styled.form`
   grid-row-gap: 20px; 
   grid-column-gap: 30px; 
   max-width: 100%;
+  
 
-  .area{
-    
-    grid-column: 1/-1;
-       
+  .area{    
+    grid-column: 1/-1;       
   }
 
     label {
@@ -144,7 +139,36 @@ font-size: 16px;
 line-height: 1.5;
 `;
 
+const Button = styled.button`
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 50%;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0 2px;
+  line-height: 40px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  grid-column: 1 / -1;
+  text-align: center;
 
+&:hover {
+  background-color: #fff;
+}
+
+&:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+`
 
 
 export default Learning

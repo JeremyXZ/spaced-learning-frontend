@@ -19,6 +19,7 @@ const App = () => {
 
     })
     const [questions, setQuestions] = useState([])
+    const [isShown, setIsShown] = useState(false)
     
     
     const saveData = async (questions, userInput) => {
@@ -30,6 +31,9 @@ const App = () => {
     }
    
 }
+    const handleShow =  () => {
+        setIsShown(!isShown)
+    }
 
     const handleClick = async(e) => {
         e.preventDefault();             
@@ -37,16 +41,26 @@ const App = () => {
             
     }
     
-
+   
     return(
         <>
         <GlobalStyle />
         <Wrapper>
             <Header/>
             <MainWrapper>
-                <Learning userInput={userInput} setUserInput={setUserInput} handleClick={handleClick}/>
-                <CreateQuiz userInput={userInput} setQuestions={setQuestions} questions={questions}/>  
-                {/* <Revision userInput={userInput} setQuestions={setQuestions} questions={questions}/> */}
+                <Learning userInput={userInput}
+                setUserInput={setUserInput} 
+                handleClick={handleClick} 
+                />
+
+                <CreateQuiz userInput={userInput} 
+                setQuestions={setQuestions}
+                questions={questions}
+                handleShow={handleShow}
+                isShown={isShown}
+                /> 
+                
+                <Revision isShown={isShown}/>
                                
             </MainWrapper>
            
@@ -85,7 +99,7 @@ place-content: center;
 /* flex-direction: column; */
 /* justify-content: center; */
 /* align-items: center; */
-
+padding-bottom: 20px;
 `
 
 
