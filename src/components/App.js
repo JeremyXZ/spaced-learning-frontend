@@ -68,7 +68,7 @@ const GlobalStyle = createGlobalStyle`
     html,
     body,
     root {
-    height: 100%;
+    height: 100%;    
     }
 `;
 
@@ -76,7 +76,7 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: minmax(200, 300) 1fr;
-  margin: 10px;
+  margin: auto;
   max-width: 1200px;
   min-width: 350px;
   min-height: 100%;

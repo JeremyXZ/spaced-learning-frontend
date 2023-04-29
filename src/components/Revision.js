@@ -5,6 +5,8 @@ import moment from "moment";
 
 const Revision = ({ isShown }) => {
   const [sessions, setSessions] = useState([]);
+  // const [showAnswer, setShowAnswer] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState("");
   const currentDate = moment().format("YYYY-MM-DD");
   // const currentDate="2023-04-30"
 
@@ -40,10 +42,13 @@ const Revision = ({ isShown }) => {
                   <ul>
                     {session.resources.map((item, index) => (
                       <li key={index}>
-                        <p>{JSON.parse(item)?.question}</p>
-                        <p>{JSON.parse(item)?.answer}</p>
+                        <p onClick={() => setSelectedAnswer(index)}>
+                          {JSON.parse(item)?.question}
+                        </p>
+                        {selectedAnswer === index && (
+                          <p>{JSON.parse(item)?.answer}</p>
+                        )}
                       </li>
-                      // console.log("from session", item)
                     ))}
                   </ul>
                 )}
