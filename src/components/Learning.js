@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
+import { Button } from "./Button.styled";
 import wordsCount from "words-count";
 
 const Learning = ({ userInput, setUserInput, handleClick }) => {
-  const { subject, task, difficulty, topic, word_count } = userInput;
+  const { subject, task, difficulty, topic, word_count, prompt } = userInput;
 
   const textareaRef = useRef(null);
 
@@ -58,8 +59,18 @@ const Learning = ({ userInput, setUserInput, handleClick }) => {
           />
         </div>
         <div>
-          <div>WordCount: </div>
-          <div>{word_count}</div>
+          <label htmlFor="prompt">AI Options:</label>
+          <select
+            id="prompt"
+            name="prompt"
+            onChange={(e) => handleChange(e)}
+            value={prompt}
+          >
+            <option value="">-- Choose --</option>
+            <option value="qzQuestions">Create Questions</option>
+            <option value="essay">Write an Essay</option>
+            <option value="summary">Write a Summary</option>
+          </select>
         </div>
 
         <div className="area">
@@ -101,7 +112,7 @@ const FormWrapper = styled.form`
   grid-template-rows: auto auto 1f;
   grid-row-gap: 20px;
   grid-column-gap: 30px;
-  max-width: 100%;
+  width: 100%;
 
   .area {
     grid-column: 1/-1;
@@ -109,58 +120,33 @@ const FormWrapper = styled.form`
 
   label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
   }
 
-  input {
+  input,
+  select {
     min-width: 12.5em;
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
   }
+  select {
+    min-width: 13.2em;
+  }
 `;
 
 const StyledTextarea = styled.textarea`
-  resize: none;
+  /* resize: none; */
+  height: auto;
   overflow: hidden;
   min-height: 48px;
-  width: 35em;
+  min-width: 35em;
+  width: 100%;
   padding: 8px;
   border: 2px solid #ccc;
   font-size: 16px;
   line-height: 1.5;
-`;
-
-const Button = styled.button`
-  background-color: dodgerblue;
-  border: 2px solid #422800;
-  border-radius: 15px;
-  box-shadow: #422800 4px 4px 0 0;
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 0 2px;
-  line-height: 40px;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  grid-column: 1 / -1;
-  /* /* text-align: center; */
-  width: 200px;
-  margin: 0 auto;
-
-  &:hover {
-    background-color: #fff;
-    color: black;
-  }
-
-  &:active {
-    box-shadow: #422800 2px 2px 0 0;
-    transform: translate(2px, 2px);
-  }
+  margin-top: 12px;
 `;
 
 export default Learning;

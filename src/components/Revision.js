@@ -63,7 +63,7 @@ const Revision = ({ isShown }) => {
 };
 
 const Wrapper = styled.div`
-  max-width: 100%;
+  width: 90%;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -79,7 +79,7 @@ const Wrapper = styled.div`
 const InfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  /* padding: 0 10px; */
   font-weight: bolder;
 `;
 

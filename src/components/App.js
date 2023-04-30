@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import Header from "./Header";
 import Learning from "./Learning";
 import Revision from "./Revision";
-import CreateQuiz from "./CreateQuiz";
+import Generator from "./Generator";
 import axios from "axios";
 
 const baseURL = "http://localhost:4000/api/tasks/";
@@ -15,13 +15,22 @@ const App = () => {
     task: "",
     difficulty: 0,
     word_count: "",
+    prompt: "",
   });
+
   const [questions, setQuestions] = useState([]);
   const [isShown, setIsShown] = useState(false);
 
-  const saveData = async (questions, userInput) => {
+  const dbInput = {
+    subject: userInput.subject,
+    topic: userInput.topic,
+    task: userInput.task,
+    difficulty: userInput.difficulty,
+    word_count: userInput.word_count,
+  };
+  const saveData = async (questions, dbInput) => {
     try {
-      const response = await axios.post(baseURL, { userInput, questions });
+      const response = await axios.post(baseURL, { dbInput, questions });
       console.log("response", response);
     } catch (err) {
       console.error(err);
@@ -33,9 +42,10 @@ const App = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    saveData(questions, userInput);
+    saveData(questions, dbInput);
   };
   console.log("app questons state", questions);
+  console.log("App dbInput", dbInput);
 
   return (
     <>
@@ -49,7 +59,7 @@ const App = () => {
             handleClick={handleClick}
           />
 
-          <CreateQuiz
+          <Generator
             userInput={userInput}
             setQuestions={setQuestions}
             questions={questions}
@@ -57,7 +67,7 @@ const App = () => {
             isShown={isShown}
           />
 
-          <Revision isShown={isShown} />
+          <Revision isShown={isShown} setUserInput={setUserInput} />
         </MainWrapper>
       </Wrapper>
     </>
@@ -69,7 +79,8 @@ const GlobalStyle = createGlobalStyle`
     body,
     root {
     height: 100%;    
-    }
+    },
+
 `;
 
 const Wrapper = styled.div`
