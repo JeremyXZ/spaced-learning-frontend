@@ -102,7 +102,7 @@ const Wrapper = styled.div`
   font-size: 1.2em;
 `;
 
-const TitleWrapper = styled.h3`
+const TitleWrapper = styled.h2`
   align-self: flex-start;
 `;
 

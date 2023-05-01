@@ -55,7 +55,7 @@ const Generator = ({
   return (
     <Wrapper>
       <ButtonWrapper>
-        <Button onClick={() => createQuestions(task)}>Create Questions</Button>
+        <Button onClick={() => createQuestions(task)}>Create Tasks</Button>
         <Button onClick={handleShow}>Show Revision</Button>
       </ButtonWrapper>
       <ul>

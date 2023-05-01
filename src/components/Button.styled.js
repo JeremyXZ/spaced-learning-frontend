@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  background-color: dodgerblue;
-  border: 2px solid #422800;
+  background-color: #009ddc;
+  border: none;
   border-radius: 15px;
-  box-shadow: #422800 4px 4px 0 0;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   color: white;
   cursor: pointer;
   display: inline-block;
@@ -21,12 +21,12 @@ export const Button = styled.button`
   margin: 0 auto;
 
   &:hover {
-    background-color: #fff;
-    color: black;
+    background-color: #3286c3;
   }
 
   &:active {
-    box-shadow: #422800 2px 2px 0 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     transform: translate(2px, 2px);
+    background-color: #94e1ff;
   }
 `;

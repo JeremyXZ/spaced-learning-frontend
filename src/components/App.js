@@ -5,21 +5,24 @@ import Learning from "./Learning";
 import Revision from "./Revision";
 import Generator from "./Generator";
 import axios from "axios";
+import ConfettiExplosion from "react-confetti-explosion";
 
 const baseURL = "http://localhost:4000/api/tasks/";
 
+const initialInput = {
+  subject: "",
+  topic: "",
+  task: "",
+  difficulty: 0,
+  word_count: "",
+  prompt: "",
+};
 const App = () => {
-  const [userInput, setUserInput] = useState({
-    subject: "",
-    topic: "",
-    task: "",
-    difficulty: 0,
-    word_count: "",
-    prompt: "",
-  });
-
+  const [userInput, setUserInput] = useState(initialInput);
   const [questions, setQuestions] = useState([]);
   const [isShown, setIsShown] = useState(false);
+  const [revisionCount, setRevisionCount] = useState(0);
+  const [isExploding, setIsExploding] = React.useState(false);
 
   const dbInput = {
     subject: userInput.subject,
@@ -36,22 +39,43 @@ const App = () => {
       console.error(err);
     }
   };
+  const clearData = () => {
+    setUserInput(initialInput);
+  };
+
+  const clearQuestions = () => {
+    setQuestions([]);
+  };
+
   const handleShow = () => {
     setIsShown(!isShown);
+    clearQuestions();
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
     saveData(questions, dbInput);
+    clearData();
   };
   console.log("app questons state", questions);
   console.log("App dbInput", dbInput);
 
   return (
     <>
+      <>
+        {isExploding && (
+          <ConfettiExplosion
+            force={0.6}
+            duration={3000}
+            particleCount={120}
+            width={1000}
+          />
+        )}
+      </>
+      ;
       <GlobalStyle />
       <Wrapper>
-        <Header />
+        <Header revisionCount={revisionCount} setIsExploding={setIsExploding} />
         <MainWrapper>
           <Learning
             userInput={userInput}
@@ -67,7 +91,7 @@ const App = () => {
             isShown={isShown}
           />
 
-          <Revision isShown={isShown} setUserInput={setUserInput} />
+          <Revision isShown={isShown} setRevisionCount={setRevisionCount} />
         </MainWrapper>
       </Wrapper>
     </>
@@ -78,7 +102,8 @@ const GlobalStyle = createGlobalStyle`
     html,
     body,
     root {
-    height: 100%;    
+    height: 100%; 
+    font-family: 'Poppins', sans-serif;  
     },
 
 `;
@@ -94,8 +119,8 @@ const Wrapper = styled.div`
 `;
 
 const MainWrapper = styled.div`
-  background-color: purple;
-  color: white;
+  background-color: #abd2fa;
+  color: black;
   min-height: 100%;
   max-width: 100%;
   display: grid;

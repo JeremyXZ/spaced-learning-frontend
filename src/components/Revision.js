@@ -3,12 +3,11 @@ import axios from "axios";
 import styled from "styled-components";
 import moment from "moment";
 
-const Revision = ({ isShown }) => {
+const Revision = ({ isShown, setRevisionCount }) => {
   const [sessions, setSessions] = useState([]);
-  // const [showAnswer, setShowAnswer] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const currentDate = moment().format("YYYY-MM-DD");
-  // const currentDate="2023-04-30"
+  // const currentDate = "2023-05-01";
 
   useEffect(() => {
     axios
@@ -16,24 +15,25 @@ const Revision = ({ isShown }) => {
       .then((response) => {
         const payload = response.data.payload;
         setSessions(payload);
+        setRevisionCount(sessions.length);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [currentDate]);
+  }, [currentDate, setRevisionCount, sessions]);
 
   return (
     <>
       {isShown && (
         <Wrapper>
-          <h3>Revision Tasks</h3>
+          <h2>Revision Zone</h2>
           <ul>
             {sessions.map((session) => (
               <li key={session.id}>
                 <InfoWrapper>
-                  <h4>Subject: {session.subject}</h4>
-                  <h4>Topic: {session.topic}</h4>
-                  <h4>Difficulty: {session.difficulty}</h4>
+                  <p>Subject: {session.subject}</p>
+                  <p>Topic: {session.topic}</p>
+                  <p>Difficulty: {session.difficulty}</p>
                 </InfoWrapper>
                 <h4>
                   Task: <br /> {session.task}
@@ -52,7 +52,7 @@ const Revision = ({ isShown }) => {
                     ))}
                   </ul>
                 )}
-                <Divider />
+                <Divider className="divider" />
               </li>
             ))}
           </ul>
@@ -71,12 +71,18 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 0 1em;
   font-size: 1.2em;
+  & h2 {
+    align-self: self-start;
+  }
   & ul {
     list-style: none;
   }
+  & ul li:last-child .divider {
+    display: none;
+  }
 `;
 
-const InfoWrapper = styled.div`
+const InfoWrapper = styled.h3`
   display: flex;
   justify-content: space-between;
   /* padding: 0 10px; */
@@ -98,7 +104,7 @@ const Divider = styled.hr`
     padding: 1 1rem;
     font-family: FontAwesome;
     font-size: 3rem;
-    background-color: purple; //match background color
+    background-color: #abd2fa; //match background color
   }
 `;
 
