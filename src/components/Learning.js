@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Button } from "./Button.styled";
-import wordsCount from "words-count";
 
 const Learning = ({ userInput, setUserInput, handleClick }) => {
-  const { subject, task, difficulty, topic, word_count, prompt } = userInput;
+  const { subject, task, difficulty, topic, prompt } = userInput;
 
   const textareaRef = useRef(null);
 
@@ -14,7 +13,6 @@ const Learning = ({ userInput, setUserInput, handleClick }) => {
     setUserInput((prevState) => ({
       ...prevState,
       [name]: value,
-      word_count: wordsCount(value),
     }));
   };
 

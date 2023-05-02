@@ -15,7 +15,6 @@ const initialInput = {
   topic: "",
   task: "",
   difficulty: 0,
-  word_count: "",
   prompt: "",
 };
 const App = () => {
@@ -29,7 +28,6 @@ const App = () => {
     topic: userInput.topic,
     task: userInput.task,
     difficulty: userInput.difficulty,
-    word_count: userInput.word_count,
   };
   const saveData = async (questions, dbInput) => {
     try {
