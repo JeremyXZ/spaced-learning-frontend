@@ -15,13 +15,13 @@ const Revision = ({ isShown, setRevisionCount }) => {
       .then((response) => {
         const payload = response.data.payload;
         setSessions(payload);
-        setRevisionCount(sessions.length);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [currentDate, setRevisionCount, sessions]);
+  }, [currentDate, setSessions]);
 
+  setRevisionCount(sessions.length);
   return (
     <>
       {isShown && (

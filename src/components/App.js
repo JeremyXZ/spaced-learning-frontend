@@ -5,7 +5,8 @@ import Learning from "./Learning";
 import Revision from "./Revision";
 import Generator from "./Generator";
 import axios from "axios";
-import ConfettiExplosion from "react-confetti-explosion";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const baseURL = "http://localhost:4000/api/tasks/";
 
@@ -22,7 +23,6 @@ const App = () => {
   const [questions, setQuestions] = useState([]);
   const [isShown, setIsShown] = useState(false);
   const [revisionCount, setRevisionCount] = useState(0);
-  const [isExploding, setIsExploding] = React.useState(false);
 
   const dbInput = {
     subject: userInput.subject,
@@ -62,20 +62,10 @@ const App = () => {
 
   return (
     <>
-      <>
-        {isExploding && (
-          <ConfettiExplosion
-            force={0.6}
-            duration={3000}
-            particleCount={120}
-            width={1000}
-          />
-        )}
-      </>
-      ;
       <GlobalStyle />
       <Wrapper>
-        <Header revisionCount={revisionCount} setIsExploding={setIsExploding} />
+        <ToastContainer theme="colored" autoClose={false} />
+        <Header revisionCount={revisionCount} />
         <MainWrapper>
           <Learning
             userInput={userInput}

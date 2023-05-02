@@ -1,7 +1,9 @@
 import moment from "moment";
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { toast } from "react-toastify";
 
-function Timer({ setIsExploding }) {
+function Timer() {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [timeLeft, setTimeLeft] = useState(null);
@@ -27,7 +29,7 @@ function Timer({ setIsExploding }) {
 
   const handleStop = () => {
     setIsActive(false);
-    setIsCompleted(true);
+    setIsCompleted(false);
     setTimeLeft(null);
   };
 
@@ -40,13 +42,21 @@ function Timer({ setIsExploding }) {
     } else if (isActive && timeLeft !== null && timeLeft <= 0) {
       setIsCompleted(true);
       setTimeLeft(null);
-      setIsExploding(true);
+      toast.success("Time is up! Please stop your current task.", {
+        position: "top-center",
+        autoClose: false,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
     return () => clearInterval(interval);
-  }, [isActive, timeLeft, setIsExploding]);
+  }, [isActive, timeLeft]);
 
   return (
-    <div>
+    <Wrapper>
       <input type="number" value={hours} onChange={handleHoursChange} />
       <input type="number" value={minutes} onChange={handleMinutesChange} />
       {!isActive && !isCompleted && (
@@ -58,8 +68,33 @@ function Timer({ setIsExploding }) {
           <p>Time left: {moment.utc(timeLeft).format("HH:mm:ss")}</p>
         </div>
       )}
-    </div>
+    </Wrapper>
   );
 }
+const Wrapper = styled.div`
+  & input {
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    font-size: 1.1em;
+  }
+  & button {
+    font-size: 1.2em;
+    font-weight: bolder;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+  & p {
+    color: white;
+    font-size: 1.2em;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #a84d7e;
+    padding: 5px;
+  }
+`;
 
 export default Timer;
