@@ -40,7 +40,7 @@ const HeaderBottomWrapper = styled.div`
   align-items: center;
 `;
 
-const ItemWrapper = styled.p`
+const ItemWrapper = styled.div`
   font-size: 1.17em;
   font-weight: bolder;
 
@@ -60,6 +60,6 @@ const ItemWrapper = styled.p`
   }
 `;
 
-const TimerWrapper = styled.p``;
+const TimerWrapper = styled.div``;
 
 export default Header;

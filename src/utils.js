@@ -1,9 +1,9 @@
 export const showQuestionAnswer = (response) => {
-  const questions = [];
-  const answers = [];
+  // const questions = [];
+  // const answers = [];
 
   const qaStrings = response.data.choices[0].text;
-  //  console.log(qsString)
+
   const qaArr = qaStrings
     .split("\n")
     .map((q) => q.replace(".", "").trim())

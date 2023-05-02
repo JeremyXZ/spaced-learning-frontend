@@ -7,7 +7,6 @@ const Revision = ({ isShown, setRevisionCount }) => {
   const [sessions, setSessions] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const currentDate = moment().format("YYYY-MM-DD");
-  // const currentDate = "2023-05-01";
 
   useEffect(() => {
     axios
@@ -21,7 +20,10 @@ const Revision = ({ isShown, setRevisionCount }) => {
       });
   }, [currentDate, setSessions]);
 
-  setRevisionCount(sessions.length);
+  useEffect(() => {
+    setRevisionCount(sessions.length);
+  }, [sessions, setRevisionCount]);
+
   return (
     <>
       {isShown && (
