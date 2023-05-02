@@ -93,9 +93,9 @@ const GlobalStyle = createGlobalStyle`
     body,
     root {
     height: 100%; 
-    font-family: 'Poppins', sans-serif;  
-    },
-
+    font-family: 'Poppins', sans-serif;     
+    }
+   
 `;
 
 const Wrapper = styled.div`

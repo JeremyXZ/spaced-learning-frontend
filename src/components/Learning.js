@@ -56,6 +56,7 @@ const Learning = ({ userInput, setUserInput, handleClick }) => {
             name="difficulty"
             value={difficulty === 0 ? "" : difficulty}
             onChange={handleChange}
+            placeholder="0 - 10"
           />
         </div>
         <div>
