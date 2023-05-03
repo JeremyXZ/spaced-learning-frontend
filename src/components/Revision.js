@@ -10,7 +10,9 @@ const Revision = ({ isShown, setRevisionCount }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/tasks/rev_day/${currentDate}`)
+      .get(
+        `https://spaced-learning-backend.onrender.com/api/tasks/rev_day/${currentDate}`
+      )
       .then((response) => {
         const payload = response.data.payload;
         setSessions(payload);
