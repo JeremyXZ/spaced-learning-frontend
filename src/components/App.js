@@ -8,7 +8,7 @@ import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const baseURL = "http://localhost:4000/api/tasks/";
+const baseURL = "https://spaced-learning-backend.onrender.com/api/tasks/";
 
 const initialInput = {
   subject: "",
