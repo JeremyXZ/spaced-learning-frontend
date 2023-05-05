@@ -1,13 +1,13 @@
 import firebase from "firebase/compat/app";
 
 const firebaseConfig = {
-  apiKey: REACT_APP_FIREBASE_API_KEY,
-  authDomain: REACT_APP_FIREBASE_AUTHDOMAIN,
-  projectId: REACT_APP_FIREBASE_PROJECTID,
-  storageBucket: REACT_APP_FIREBASE_STORAGEBUCKET,
-  messagingSenderId: REACT_APP_FIREBASE_MESSAGINGSENDERID,
-  appId: REACT_APP_FIREBASE_APPID,
-  measurementId: REACT_APP_FIREBASE_MEASUREMENTID,
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_FIREBASE_APPID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
