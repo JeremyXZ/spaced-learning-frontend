@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Header from "./Header";
 import Learning from "./Learning";
@@ -7,6 +7,9 @@ import Generator from "./Generator";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getAuth } from "firebase/auth";
+import firebaseApp from "../firebaseConfig";
+import Login from "./Login";
 
 const baseURL = "https://spaced-learning-backend.onrender.com/api/tasks/";
 
@@ -22,6 +25,7 @@ const App = () => {
   const [questions, setQuestions] = useState([]);
   const [isShown, setIsShown] = useState(false);
   const [revisionCount, setRevisionCount] = useState(0);
+  const [authUser, setAuthUser] = useState(null);
 
   const dbInput = {
     subject: userInput.subject,
@@ -55,33 +59,55 @@ const App = () => {
     saveData(questions, dbInput);
     clearData();
   };
-  console.log("app questons state", questions);
-  console.log("App dbInput", dbInput);
+
+  //firebase codes below:
+  const auth = getAuth(firebaseApp);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthUser(user);
+        console.log("Signed in as:", user.displayName);
+      } else {
+        // User is signed out
+        console.log("Not signed in.");
+      }
+    });
+
+    // Clean up subscription
+    return () => unsubscribe();
+  }, [auth]);
 
   return (
     <>
-      <GlobalStyle />
-      <Wrapper>
-        <ToastContainer theme="colored" autoClose={false} />
-        <Header revisionCount={revisionCount} />
-        <MainWrapper>
-          <Learning
-            userInput={userInput}
-            setUserInput={setUserInput}
-            handleClick={handleClick}
-          />
+      {authUser ? (
+        <>
+          <GlobalStyle />
+          <Wrapper>
+            <ToastContainer theme="colored" autoClose={false} />
+            <Header revisionCount={revisionCount} />
+            <MainWrapper>
+              <Learning
+                userInput={userInput}
+                setUserInput={setUserInput}
+                handleClick={handleClick}
+              />
 
-          <Generator
-            userInput={userInput}
-            setQuestions={setQuestions}
-            questions={questions}
-            handleShow={handleShow}
-            isShown={isShown}
-          />
+              <Generator
+                userInput={userInput}
+                setQuestions={setQuestions}
+                questions={questions}
+                handleShow={handleShow}
+                isShown={isShown}
+              />
 
-          <Revision isShown={isShown} setRevisionCount={setRevisionCount} />
-        </MainWrapper>
-      </Wrapper>
+              <Revision isShown={isShown} setRevisionCount={setRevisionCount} />
+            </MainWrapper>
+          </Wrapper>
+        </>
+      ) : (
+        <Login setAuthUser={setAuthUser} />
+      )}
     </>
   );
 };
