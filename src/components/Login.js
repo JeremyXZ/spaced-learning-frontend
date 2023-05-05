@@ -20,8 +20,10 @@ const Login = ({ setAuthUser }) => {
 
   return (
     <div>
-      <h1>Login Page</h1>
-      <button onClick={handleSignInWithGoogle}>Sign in with Google</button>
+      <h1>Welcome to Spaced Learning App</h1>
+      <button onClick={handleSignInWithGoogle}>
+        Please Sign in with Google
+      </button>
     </div>
   );
 };

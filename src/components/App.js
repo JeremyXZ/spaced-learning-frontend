@@ -64,7 +64,7 @@ const App = () => {
   const auth = getAuth(firebaseApp);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(auth, (user) => {
+    const unsubscribe = auth?.onAuthStateChanged((user) => {
       if (user) {
         setAuthUser(user);
         console.log("Signed in as:", user.displayName);
@@ -78,6 +78,7 @@ const App = () => {
     return () => unsubscribe();
   }, [auth]);
 
+  console.log(firebaseApp);
   return (
     <>
       {authUser ? (
