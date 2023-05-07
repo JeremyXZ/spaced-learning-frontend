@@ -9,7 +9,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getAuth } from "firebase/auth";
 import firebaseApp from "../firebaseConfig";
-import Login from "./Login";
 
 const baseURL = "https://spaced-learning-backend.onrender.com/api/tasks/";
 
@@ -25,7 +24,7 @@ const App = () => {
   const [questions, setQuestions] = useState([]);
   const [isShown, setIsShown] = useState(false);
   const [revisionCount, setRevisionCount] = useState(0);
-  const [authUser, setAuthUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const dbInput = {
     subject: userInput.subject,
@@ -66,10 +65,11 @@ const App = () => {
   useEffect(() => {
     const unsubscribe = auth?.onAuthStateChanged((user) => {
       if (user) {
-        setAuthUser(user);
-        console.log("Signed in as:", user.displayName);
+        setIsLoggedIn(true);
+        // console.log("Signed in as:", displayName);
       } else {
         // User is signed out
+
         console.log("Not signed in.");
       }
     });
@@ -81,34 +81,35 @@ const App = () => {
   console.log(firebaseApp);
   return (
     <>
-      {authUser ? (
-        <>
-          <GlobalStyle />
-          <Wrapper>
-            <ToastContainer theme="colored" autoClose={false} />
-            <Header revisionCount={revisionCount} />
-            <MainWrapper>
-              <Learning
-                userInput={userInput}
-                setUserInput={setUserInput}
-                handleClick={handleClick}
-              />
+      <GlobalStyle />
+      <Wrapper>
+        <ToastContainer theme="colored" autoClose={false} />
+        <Header
+          revisionCount={revisionCount}
+          setIsLoggedIn={setIsLoggedIn}
+          isLoggedIn={isLoggedIn}
+        />
 
-              <Generator
-                userInput={userInput}
-                setQuestions={setQuestions}
-                questions={questions}
-                handleShow={handleShow}
-                isShown={isShown}
-              />
+        {isLoggedIn && (
+          <MainWrapper>
+            <Learning
+              userInput={userInput}
+              setUserInput={setUserInput}
+              handleClick={handleClick}
+            />
 
-              <Revision isShown={isShown} setRevisionCount={setRevisionCount} />
-            </MainWrapper>
-          </Wrapper>
-        </>
-      ) : (
-        <Login setAuthUser={setAuthUser} />
-      )}
+            <Generator
+              userInput={userInput}
+              setQuestions={setQuestions}
+              questions={questions}
+              handleShow={handleShow}
+              isShown={isShown}
+            />
+
+            <Revision isShown={isShown} setRevisionCount={setRevisionCount} />
+          </MainWrapper>
+        )}
+      </Wrapper>
     </>
   );
 };
@@ -131,6 +132,7 @@ const Wrapper = styled.div`
   max-width: 1200px;
   min-width: 350px;
   min-height: 100%;
+  padding: 0 5px;
 `;
 
 const MainWrapper = styled.div`

@@ -1,16 +1,18 @@
+import styled from "styled-components";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import firebaseApp from "../firebaseConfig";
+import { Button } from "./Button.styled";
 
 const provider = new GoogleAuthProvider();
 
-const Login = ({ setAuthUser }) => {
+const Login = ({ setIsLoggedIn }) => {
   const auth = getAuth(firebaseApp);
 
   const handleSignInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
-        setAuthUser(user);
+        setIsLoggedIn(true);
         console.log("Signed in as:", user.displayName);
       })
       .catch((error) => {
@@ -20,12 +22,25 @@ const Login = ({ setAuthUser }) => {
 
   return (
     <div>
-      <h1>Welcome to Spaced Learning App</h1>
-      <button onClick={handleSignInWithGoogle}>
-        Please Sign in with Google
-      </button>
+      <LoginButton onClick={handleSignInWithGoogle}>
+        Sign in with Google
+      </LoginButton>
     </div>
   );
 };
+
+const LoginButton = styled(Button)`
+  width: 120px;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 2px 3px;
+
+  &:hover {
+    background-color: #eab8d7;
+    color: white;
+  }
+`;
 
 export default Login;

@@ -2,6 +2,7 @@ import moment from "moment";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { toast } from "react-toastify";
+import { Button } from "./Button.styled";
 
 function Timer() {
   const [hours, setHours] = useState(0);
@@ -60,9 +61,11 @@ function Timer() {
       <input type="number" value={hours} onChange={handleHoursChange} />
       <input type="number" value={minutes} onChange={handleMinutesChange} />
       {!isActive && !isCompleted && (
-        <button onClick={handleStart}>Start</button>
+        <TimerButton onClick={handleStart}>Start</TimerButton>
       )}
-      {(isActive || isCompleted) && <button onClick={handleStop}>Stop</button>}
+      {(isActive || isCompleted) && (
+        <TimerButton onClick={handleStop}>Stop</TimerButton>
+      )}
       {timeLeft !== null && (
         <div>
           <p>Time left: {moment.utc(timeLeft).format("HH:mm:ss")}</p>
@@ -72,28 +75,36 @@ function Timer() {
   );
 }
 const Wrapper = styled.div`
+  margin-left: 10px;
   & input {
     border-radius: 50%;
     border: 1px solid #ccc;
-    padding: 10px;
-    width: 30px;
-    height: 30px;
+    padding: 8px;
+    width: 1.3em;
+    height: 1.3em;
     margin-right: 5px;
     font-size: 1.1em;
+    text-align: center;
   }
-  & button {
-    font-size: 1.2em;
-    font-weight: bolder;
-    padding: 10px 20px;
-    border-radius: 10px;
-  }
+
   & p {
     color: white;
-    font-size: 1.2em;
     border-radius: 10px;
     text-align: center;
     background-color: #a84d7e;
     padding: 5px;
+  }
+`;
+const TimerButton = styled(Button)`
+  width: 120px;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  margin: 5px;
+
+  &:hover {
+    background-color: #eab8d7;
+    color: white;
   }
 `;
 

@@ -10,14 +10,14 @@ export const Button = styled.button`
   display: inline-block;
   font-weight: 600;
   font-size: 14px;
-  padding: 0 2px;
+  padding: 0 5px;
   line-height: 40px;
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   grid-column: 1 / -1;
-  width: 200px;
+  width: 120px;
   margin: 0 auto;
 
   &:hover {

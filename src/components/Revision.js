@@ -16,16 +16,14 @@ const Revision = ({ isShown, setRevisionCount }) => {
       .then((response) => {
         const payload = response.data.payload;
         setSessions(payload);
+        setRevisionCount(payload.length);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [currentDate, setSessions]);
+  }, [currentDate, setSessions, setRevisionCount]);
 
-  useEffect(() => {
-    setRevisionCount(sessions.length);
-  }, [sessions, setRevisionCount]);
-
+  console.log("sessions.length in Revision", sessions.length);
   return (
     <>
       {isShown && (
