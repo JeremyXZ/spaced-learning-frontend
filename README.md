@@ -13,6 +13,12 @@ The app aims to help students revise what they have learned in spaced repetition
 5. Set a time for a specific revision task by using the timer at the top. When the time is up, a reminder will pop up.
 6. Display tasks whose scheduled day matches the current date when a user clicks "Show Revision". The total number of tasks to be revised on the current date is shown at the top right of the page. In Revision Zone, initially only questions will appear and an answer to a question will appear only when the corresponding question is clicked.
 
+# Sreeenshots of AI tasks done by this App:
+![Generating Questions from texts provided](https://github.com/JeremyXZ/spaced-learning-frontend/blob/493fc72bac67d06d1fab088e9bb32e75333b187d/src/images/AI_generate_questions.png)
+![Summarising a text given](https://github.com/JeremyXZ/spaced-learning-frontend/blob/493fc72bac67d06d1fab088e9bb32e75333b187d/src/images/AI_summary_task.png)
+![Writing an essay based on instructions given](https://github.com/JeremyXZ/spaced-learning-frontend/blob/493fc72bac67d06d1fab088e9bb32e75333b187d/src/images/AI_essay_writing.png)
+
+
 # Initial planning:
 
 ## Basic steps to implement the schedule:
