@@ -1,4 +1,5 @@
 # Spaced Learning App
+## Demo: https://spaced-learning.netlify.app/
 
 The app aims to help students revise what they have learned in spaced repetition, namely in next day, 7th, 16th and 35th day after their initial learning session. In this way, students can effectively retain information for longer periods and improve their learning efficiently. Tech stack for this app: react, postgrdsql database, firebase authentication, css styled components, restful API, node.cron and react-toastify.
 
