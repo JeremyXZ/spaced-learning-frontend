@@ -1,6 +1,6 @@
 # Spaced Learning App
 
-The app aims to help students revise what they have learned in spaced repetition, namely in next day, 7th, 16th and 35th day after their initial learning session. In this way, students can effectively retain information for longer periods and improve their learning efficiently.
+The app aims to help students revise what they have learned in spaced repetition, namely in next day, 7th, 16th and 35th day after their initial learning session. In this way, students can effectively retain information for longer periods and improve their learning efficiently. Tech stack for this app: react, postgrdsql database, firebase authentication, css styled components, restful API, node.cron and react-toastify.
 
 # 6 Major features:
 
@@ -14,10 +14,10 @@ The app aims to help students revise what they have learned in spaced repetition
 6. Display tasks whose scheduled day matches the current date when a user clicks "Show Revision". The total number of tasks to be revised on the current date is shown at the top right of the page. In Revision Zone, initially only questions will appear and an answer to a question will appear only when the corresponding question is clicked.
 
 # Sreeenshots of AI tasks done by this App:
+
 ![Generating Questions from texts provided](https://github.com/JeremyXZ/spaced-learning-frontend/blob/493fc72bac67d06d1fab088e9bb32e75333b187d/src/images/AI_generate_questions.png)
 ![Summarising a text given](https://github.com/JeremyXZ/spaced-learning-frontend/blob/493fc72bac67d06d1fab088e9bb32e75333b187d/src/images/AI_summary_task.png)
 ![Writing an essay based on instructions given](https://github.com/JeremyXZ/spaced-learning-frontend/blob/493fc72bac67d06d1fab088e9bb32e75333b187d/src/images/AI_essay_writing.png)
-
 
 # Initial planning:
 

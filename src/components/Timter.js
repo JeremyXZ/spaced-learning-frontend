@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { toast } from "react-toastify";
 import { Button } from "./Button.styled";
 
-function Timer() {
+function Timer({ isLoggedIn }) {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [timeLeft, setTimeLeft] = useState(null);
@@ -61,7 +61,9 @@ function Timer() {
       <input type="number" value={hours} onChange={handleHoursChange} />
       <input type="number" value={minutes} onChange={handleMinutesChange} />
       {!isActive && !isCompleted && (
-        <TimerButton onClick={handleStart}>Start</TimerButton>
+        <TimerButton onClick={handleStart} disabled={!isLoggedIn}>
+          Start
+        </TimerButton>
       )}
       {(isActive || isCompleted) && (
         <TimerButton onClick={handleStop}>Stop</TimerButton>
@@ -80,8 +82,8 @@ const Wrapper = styled.div`
     border-radius: 50%;
     border: 1px solid #ccc;
     padding: 8px;
-    width: 1.3em;
-    height: 1.3em;
+    width: 1.4em;
+    height: 1.4em;
     margin-right: 5px;
     font-size: 1.1em;
     text-align: center;
@@ -92,7 +94,7 @@ const Wrapper = styled.div`
     border-radius: 10px;
     text-align: center;
     background-color: #a84d7e;
-    padding: 5px;
+    padding: 3px;
   }
 `;
 const TimerButton = styled(Button)`

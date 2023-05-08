@@ -14,7 +14,7 @@ const Header = ({ revisionCount, setIsLoggedIn, isLoggedIn }) => {
         </ItemWrapper>
         <TimerWrapper>
           <h2>Timer:</h2>
-          <Timer />
+          <Timer isLoggedIn={isLoggedIn} />
         </TimerWrapper>
         {isLoggedIn ? (
           <Logout setIsLoggedIn={setIsLoggedIn} />
