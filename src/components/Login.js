@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import firebaseApp from "../firebaseConfig";
 import { Button } from "./Button.styled";
@@ -36,6 +36,13 @@ const LoginButton = styled(Button)`
   font-size: 14px;
   line-height: 18px;
   padding: 2px 3px;
+
+  ${(props) =>
+    !props.isLoggedIn &&
+    css`
+      opacity: 1;
+      cursor: pointer;
+    `}
 
   &:hover {
     background-color: #eab8d7;

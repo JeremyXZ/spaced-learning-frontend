@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Button } from "./Button.styled";
 
-const Learning = ({ userInput, setUserInput, handleClick }) => {
+const Learning = ({ userInput, setUserInput, handleClick, isLoggedIn }) => {
   const { subject, task, difficulty, topic, prompt } = userInput;
 
   const textareaRef = useRef(null);
@@ -84,7 +84,9 @@ const Learning = ({ userInput, setUserInput, handleClick }) => {
             placeholder="Enter your text here..."
           />
         </div>
-        <Button type="submit">Save Data</Button>
+        <Button type="submit" isLoggedIn={isLoggedIn}>
+          Save Data
+        </Button>
       </FormWrapper>
     </Wrapper>
   );

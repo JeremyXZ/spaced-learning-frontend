@@ -12,6 +12,7 @@ const Generator = ({
   questions,
   handleShow,
   isShown,
+  isLoggedIn,
 }) => {
   const { task, prompt } = userInput;
   const selectedOption = prompt;
@@ -55,8 +56,12 @@ const Generator = ({
   return (
     <Wrapper>
       <ButtonWrapper>
-        <Button onClick={() => createQuestions(task)}>Create Tasks</Button>
-        <Button onClick={handleShow}>Show Revision</Button>
+        <Button onClick={() => createQuestions(task)} isLoggedIn={isLoggedIn}>
+          Create Tasks
+        </Button>
+        <Button onClick={handleShow} isLoggedIn={isLoggedIn}>
+          Show Revision
+        </Button>
       </ButtonWrapper>
       <ul>
         {questions.length > 0 &&

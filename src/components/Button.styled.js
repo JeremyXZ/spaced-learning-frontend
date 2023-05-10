@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Button = styled.button`
   background-color: #009ddc;
@@ -19,6 +19,13 @@ export const Button = styled.button`
   grid-column: 1 / -1;
   width: 120px;
   margin: 0 auto;
+
+  ${(props) =>
+    !props.isLoggedIn &&
+    css`
+      opacity: 0.3;
+      cursor: not-allowed;
+    `}
 
   &:hover {
     background-color: #3286c3;

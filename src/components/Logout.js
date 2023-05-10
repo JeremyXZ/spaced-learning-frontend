@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { getAuth } from "firebase/auth";
 import firebaseApp from "../firebaseConfig";
 import { Button } from "./Button.styled";
@@ -19,6 +19,13 @@ const LogoutButton = styled(Button)`
   background-color: white;
   color: black;
   font-size: 16px;
+
+  ${(props) =>
+    !props.isLoggedIn &&
+    css`
+      opacity: 1;
+      cursor: pointer;
+    `}
 
   &:hover {
     background-color: #eab8d7;

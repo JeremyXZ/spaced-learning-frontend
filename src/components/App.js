@@ -23,7 +23,7 @@ const App = () => {
   const [userInput, setUserInput] = useState(initialInput);
   const [questions, setQuestions] = useState([]);
   const [isShown, setIsShown] = useState(false);
-  const [revisionCount, setRevisionCount] = useState(0);
+  const [revisionCount, setRevisionCount] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const dbInput = {
@@ -90,25 +90,25 @@ const App = () => {
           isLoggedIn={isLoggedIn}
         />
 
-        {isLoggedIn && (
-          <MainWrapper>
-            <Learning
-              userInput={userInput}
-              setUserInput={setUserInput}
-              handleClick={handleClick}
-            />
+        <MainWrapper>
+          <Learning
+            userInput={userInput}
+            setUserInput={setUserInput}
+            handleClick={handleClick}
+            isLoggedIn={isLoggedIn}
+          />
 
-            <Generator
-              userInput={userInput}
-              setQuestions={setQuestions}
-              questions={questions}
-              handleShow={handleShow}
-              isShown={isShown}
-            />
+          <Generator
+            userInput={userInput}
+            setQuestions={setQuestions}
+            questions={questions}
+            handleShow={handleShow}
+            isShown={isShown}
+            isLoggedIn={isLoggedIn}
+          />
 
-            <Revision isShown={isShown} setRevisionCount={setRevisionCount} />
-          </MainWrapper>
-        )}
+          <Revision isShown={isShown} setRevisionCount={setRevisionCount} />
+        </MainWrapper>
       </Wrapper>
     </>
   );

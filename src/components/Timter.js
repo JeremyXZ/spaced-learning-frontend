@@ -5,8 +5,8 @@ import { toast } from "react-toastify";
 import { Button } from "./Button.styled";
 
 function Timer({ isLoggedIn }) {
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
+  const [hours, setHours] = useState(null);
+  const [minutes, setMinutes] = useState(null);
   const [timeLeft, setTimeLeft] = useState(null);
   const [isActive, setIsActive] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
@@ -61,12 +61,14 @@ function Timer({ isLoggedIn }) {
       <input type="number" value={hours} onChange={handleHoursChange} />
       <input type="number" value={minutes} onChange={handleMinutesChange} />
       {!isActive && !isCompleted && (
-        <TimerButton onClick={handleStart} disabled={!isLoggedIn}>
+        <TimerButton onClick={handleStart} isLoggedIn={isLoggedIn}>
           Start
         </TimerButton>
       )}
       {(isActive || isCompleted) && (
-        <TimerButton onClick={handleStop}>Stop</TimerButton>
+        <TimerButton onClick={handleStop} isLoggedIn={isLoggedIn}>
+          Stop
+        </TimerButton>
       )}
       {timeLeft !== null && (
         <div>

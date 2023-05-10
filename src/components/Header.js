@@ -10,7 +10,8 @@ const Header = ({ revisionCount, setIsLoggedIn, isLoggedIn }) => {
       <TitleWrapper>Spaced Learning App</TitleWrapper>
       <HeaderBottomWrapper>
         <ItemWrapper>
-          <h2>Revision Item: </h2> <p>{isLoggedIn ? revisionCount : 0}</p>
+          <h2>Revision Item: </h2>{" "}
+          <div>{isLoggedIn ? revisionCount : null}</div>
         </ItemWrapper>
         <TimerWrapper>
           <h2>Timer:</h2>
@@ -56,7 +57,7 @@ const ItemWrapper = styled.div`
   font-size: 1.17em;
   font-weight: bolder;
   gap: 10px;
-  & p {
+  & div {
     display: grid;
     place-content: center;
     background-color: #5cb270;
@@ -65,11 +66,9 @@ const ItemWrapper = styled.div`
     font-size: 1.1em;
     line-height: 1.2;
     text-align: center;
-    width: 1.8em;
-    height: 1.8em;
+    width: 2.3em;
+    height: 2em;
     border-radius: 50%;
-    /* box-shadow: 0 0 5px #ff0000; */
-    /* margin-lef: 10px; */
     margin-right: 2em;
   }
 `;
