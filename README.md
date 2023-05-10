@@ -1,10 +1,11 @@
 # Spaced Learning App
+## Demo: https://spaced-learning.netlify.app/
 
 The app aims to help students revise what they have learned in spaced repetition, namely in next day, 7th, 16th and 35th day after their initial learning session. In this way, students can effectively retain information for longer periods and improve their learning efficiently. Tech stack for this app: react, postgrdsql database, firebase authentication, css styled components, restful API, node.cron and react-toastify.
 
 # 6 Major features:
 
-## Latest update: starting from 1st May, we had to pay for the usage of the modle "text"-davinci-003G" - a GPT3 variant, which was used to carry out task 2, 3, 4 as shown below. So the AI functions in this app won't work as I don't pay for the AI services. So just to show how those tasks can be done, I took some screenshots of the sampled tasks stored in my database and list them here, immediately after these features.
+## Latest update: starting from 1st May 2023, we had to pay for the usage of the modle "text"-davinci-003G" - an OpenAI GPT3 variant, which was used to carry out task 2, 3, 4 as shown below. So the AI functions in this app won't work as I don't pay for the AI services. So just to show how those tasks can be done, I took some screenshots of the sampled tasks stored in my database and list them here, immediately after these features.
 
 1. Automatically schedule 4 time slots (next day, 7th, 16th, 35th day after the current date ) for the material in the Content box to recur after a user fills out all the info and click "Save data". The material can be key concepts, notes and exercises etc.
 2. Automatically generate questions: When a user write or copy and paste some texts into the Content box and select "Create Questions" from the AI option menu.
