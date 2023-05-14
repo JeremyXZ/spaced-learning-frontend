@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Timer from "./Timter";
 import Login from "./Login";
 import Logout from "./Logout";
+import DirectAccess from "./DirectAccess";
 
 const Header = ({ revisionCount, setIsLoggedIn, isLoggedIn }) => {
   return (
@@ -22,6 +23,7 @@ const Header = ({ revisionCount, setIsLoggedIn, isLoggedIn }) => {
         ) : (
           <Login setIsLoggedIn={setIsLoggedIn} />
         )}
+        <DirectAccess setIsLoggedIn={setIsLoggedIn} />
       </HeaderBottomWrapper>
     </Wrapper>
   );
